@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somanadh Kollavajjala - Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Netflix+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --netflix-red: #E50914;
+            --netflix-black: #141414;
+            --netflix-dark-grey: #1a1a1a;
+            --netflix-grey: #2f2f2f;
+            --netflix-light-grey: #808080;
+            --netflix-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--netflix-black);
+            color: var(--netflix-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .navbar.scrolled {
+            background-color: var(--netflix-black);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 42px;
+            color: var(--netflix-red);
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--netflix-white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--netflix-light-grey);
+        }
+
+        .contact-btn {
+            background-color: var(--netflix-red);
+            padding: 8px 20px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #f40612;
+            color: var(--netflix-white) !important;
+            transform: scale(1.05);
+        }
+
+        .sound-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 2px solid var(--netflix-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .sound-control:hover {
+            background-color: var(--netflix-red);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+        }
+
+        .sound-icon {
+            font-size: 24px;
+            color: var(--netflix-white);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.3) 70%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23141414" width="1200" height="800"/><g opacity="0.1"><circle cx="100" cy="100" r="50" fill="%23E50914"/><circle cx="900" cy="200" r="80" fill="%23E50914"/><circle cx="200" cy="600" r="60" fill="%23E50914"/><circle cx="1000" cy="700" r="70" fill="%23E50914"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-profile {
+            position: relative;
+            z-index: 2;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--netflix-red);
+            box-shadow: 0 0 40px rgba(229, 9, 20, 0.6),
+                        0 0 80px rgba(229, 9, 20, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .profile-image-wrapper:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(229, 9, 20, 0.8),
+                        0 0 120px rgba(229, 9, 20, 0.4);
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.3) 0%, transparent 50%, rgba(229, 9, 20, 0.2) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2f2f2f 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            color: var(--netflix-red);
+            font-weight: 700;
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        .profile-ring {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 2px solid var(--netflix-red);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse-ring 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.1;
+            }
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--netflix-light-grey);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--netflix-white);
+        }
+
+        .btn-primary {
+            background-color: var(--netflix-white);
+            color: var(--netflix-black);
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(255,255,255,0.8);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: rgba(109,109,110,0.7);
+            color: var(--netflix-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(109,109,110,0.4);
+            transform: scale(1.05);
+        }
+
+        .hero-fade {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--netflix-black), transparent);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 50px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--netflix-white);
+        }
+
+        /* Projects Row */
+        .projects-row {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .projects-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-card {
+            min-width: 350px;
+            height: 200px;
+            background-color: var(--netflix-grey);
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2f2f2f 100%);
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .project-card-content {
+            padding: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: var(--netflix-light-grey);
+            line-height: 1.4;
+        }
+
+        .project-tech {
+            font-size: 12px;
+            color: var(--netflix-red);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background-color: var(--netflix-dark-grey);
+            padding: 30px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--netflix-red);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.2);
+        }
+
+        .skill-category h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--netflix-white);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--netflix-grey);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--netflix-white);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--netflix-red);
+            transform: scale(1.05);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: var(--netflix-red);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -47px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--netflix-red);
+            border: 3px solid var(--netflix-black);
+        }
+
+        .timeline-content {
+            background-color: var(--netflix-dark-grey);
+            padding: 25px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+        }
+
+        .timeline-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-role {
+            color: var(--netflix-red);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: var(--netflix-light-grey);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            background-color: var(--netflix-dark-grey);
+            padding: 30px;
+            border-radius: 6px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--netflix-white);
+            display: block;
+        }
+
+        .contact-item:hover {
+            background-color: var(--netflix-red);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(229, 9, 20, 0.4);
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .contact-label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            font-size: 14px;
+            color: var(--netflix-light-grey);
+        }
+
+        .contact-item:hover .contact-value {
+            color: var(--netflix-white);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--netflix-dark-grey);
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 3px solid var(--netflix-red);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: var(--netflix-light-grey);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            color: var(--netflix-white);
+            font-size: 24px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: var(--netflix-red);
+            transform: scale(1.2);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 0 20px;
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-profile {
+                order: -1;
+            }
+
+            .profile-image-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .profile-placeholder {
+                font-size: 80px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .project-card {
+                min-width: 280px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading animation */
+        .netflix-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--netflix-black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s ease 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loader-text {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 72px;
+            color: var(--netflix-red);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="netflix-loader">
+        <div class="loader-text">SK</div>
+    </div>
+
+    <!-- Sound Control Button -->
+    <div class="sound-control" id="soundControl" title="Sound On/Off">
+        <span class="sound-icon" id="soundIcon">🔊</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">SOMANADH</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact" class="contact-btn">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Developer.<br>AI Enthusiast.<br>Creator.</h1>
+            <p class="hero-subtitle">B.Tech CSE • Vardhaman College of Engineering</p>
+            <p class="hero-description">
+                Crafting intelligent solutions at the intersection of web development and artificial intelligence. 
+                Passionate about building practical, end-to-end applications that combine solid UI fundamentals 
+                with data-driven systems.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <span>▶</span> View Projects
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    More Info
+                </a>
+            </div>
+        </div>
+       <div class="hero-profile">
+    <div class="profile-image-container">
+        <div class="profile-ring"></div>
+        <div class="profile-image-wrapper">
+            <img src="/unnamed.jpg" alt="Somanadh Kollavajjala" class="profile-image">
+        </div>
+    </div>
+</div>
+        <div class="hero-fade"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title fade-in">About Me</h2>
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Professional Summary</h3>
+                    <p class="timeline-description">
+                        Technically-driven Computer Science undergraduate with strong foundations in frontend web 
+                        development using HTML and CSS, and a growing focus on Artificial Intelligence and Machine 
+                        Learning. Experienced in translating designs into clean, user-friendly web interfaces while 
+                        also building and experimenting with AI-driven applications.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Education</h3>
+                    <div class="timeline-role">Bachelor of Technology - Computer Science & Engineering</div>
+                    <p class="timeline-description">
+                        Vardhaman College of Engineering, Hyderabad<br>
+                        Expected Graduation: 2026<br>
+                        Relevant Coursework: Machine Learning, Data Structures & Algorithms
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Career Interests</h3>
+                    <p class="timeline-description">
+                        Pursuing expertise in AI/ML and cloud engineering. Interested in AI consultancy and 
+                        building innovative AI solutions. Exploring career paths in machine learning engineering 
+                        and cloud architecture. Active in technology communities and content creation on LinkedIn.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <h2 class="section-title fade-in">Featured Projects</h2>
+        <div class="projects-row fade-in">
+            <div class="project-card">
+                <div class="project-card-content">
+                    <div>
+                        <h3 class="project-title">Student Review Hub</h3>
+                        <p class="project-description">
+                            Web-based platform for students to submit and view academic resource reviews. 
+                            Built with responsive HTML/CSS focusing on layout consistency and mobile-friendly design.
+                        </p>
+                    </div>
+                    <div class="project-tech">HTML • CSS • Responsive Design</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-content">
+                    <div>
+                        <h3 class="project-title">YouTube Clone UI</h3>
+                        <p class="project-description">
+                            YouTube-inspired interface implementation to practice real-world layout structuring. 
+                            Used Flexbox and modern CSS techniques for pixel-perfect alignment.
+                        </p>
+                    </div>
+                    <div class="project-tech">HTML • CSS • Flexbox • UI Design</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-content">
+                    <div>
+                        <h3 class="project-title">Finance Automation</h3>
+                        <p class="project-description">
+                            Automated finance workflows using n8n to process transaction data. 
+                            Integrated APIs and webhooks for automated logging and notifications.
+                        </p>
+                    </div>
+                    <div class="project-tech">n8n • API Integration • Automation • Webhooks</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-content">
+                    <div>
+                        <h3 class="project-title">AI Exploration</h3>
+                        <p class="project-description">
+                            Building and experimenting with AI-driven applications. Hands-on practice with 
+                            prompt engineering and OpenAI API integration.
+                        </p>
+                    </div>
+                    <div class="project-tech">OpenAI API • Prompt Engineering • Python</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title fade-in">Technical Arsenal</h2>
+        <div class="skills-grid fade-in">
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Web Development</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">Responsive Design</span>
+                    <span class="skill-tag">Flexbox</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>AI & ML Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">OpenAI API</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                    <span class="skill-tag">Machine Learning</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Automation & Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">n8n</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">API Integration</span>
+                    <span class="skill-tag">Webhooks</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data & Analysis</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">JSON</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Soft Skills</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">UX Thinking</span>
+                    <span class="skill-tag">Quick Learner</span>
+                    <span class="skill-tag">Collaboration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <h2 class="section-title fade-in">Learning Journey</h2>
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Deep Learning & Transformers</h3>
+                    <div class="timeline-role">Ongoing Certification</div>
+                    <p class="timeline-description">
+                        Advanced study in deep learning architectures and transformer models. 
+                        Exploring modern AI techniques and their practical applications.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Full-Stack Development</h3>
+                    <div class="timeline-role">Project-Based Learning</div>
+                    <p class="timeline-description">
+                        Hands-on experience building complete web applications from frontend to backend. 
+                        Focus on practical implementation and real-world problem solving.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Git & Version Control</h3>
+                    <div class="timeline-role">Development Workflow</div>
+                    <p class="timeline-description">
+                        Active user of Git for version control and collaborative development. 
+                        Regular contributions and project management through GitHub.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title fade-in">Get In Touch</h2>
+        <div class="contact-grid fade-in">
+            <a href="mailto:skollavajjala@gmail.com" class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-label">Email</div>
+                <div class="contact-value">skollavajjala@gmail.com</div>
+            </a>
+
+            <a href="tel:+919494235383" class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div class="contact-label">Phone</div>
+                <div class="contact-value">+91 9494235383</div>
+            </a>
+
+            <a href="https://github.com/Somanadh-k/" target="_blank" class="contact-item">
+                <div class="contact-icon">💻</div>
+                <div class="contact-label">GitHub</div>
+                <div class="contact-value">@Somanadh-k</div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/somanadh-k-5ba42a25a/" target="_blank" class="contact-item">
+                <div class="contact-icon">🔗</div>
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value">Somanadh K</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                Based in Hyderabad, Telangana, India<br>
+                Languages: English (Fluent) • Telugu (Native) • Hindi (Conversational)
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/Somanadh-k/" target="_blank" class="social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/somanadh-k-5ba42a25a/" target="_blank" class="social-link">LinkedIn</a>
+                <a href="mailto:skollavajjala@gmail.com" class="social-link">Email</a>
+            </div>
+            <p class="footer-text" style="margin-top: 30px; font-size: 12px;">
+                © 2026 Somanadh Kollavajjala. Crafted with passion.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Sound system
+        let audioContext;
+        let soundEnabled = true;
+
+        // Netflix sound effect on page load
+        window.addEventListener('load', () => {
+            // Create audio context for the Netflix "ta-dum" sound
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Function to play Netflix-style sound
+            function playNetflixSound() {
+                if (!soundEnabled) return;
+                
+                const now = audioContext.currentTime;
+                
+                // Create oscillators for the two-note "ta-dum" sound
+                const note1 = audioContext.createOscillator();
+                const note2 = audioContext.createOscillator();
+                const gainNode1 = audioContext.createGain();
+                const gainNode2 = audioContext.createGain();
+                
+                // First note (higher pitch - "ta")
+                note1.frequency.setValueAtTime(830, now); // G#5
+                note1.connect(gainNode1);
+                gainNode1.connect(audioContext.destination);
+                
+                // Volume envelope for first note
+                gainNode1.gain.setValueAtTime(0, now);
+                gainNode1.gain.linearRampToValueAtTime(0.3, now + 0.01);
+                gainNode1.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                
+                note1.start(now);
+                note1.stop(now + 0.4);
+                
+                // Second note (lower pitch - "dum")
+                note2.frequency.setValueAtTime(415, now + 0.15); // G#4 (octave lower)
+                note2.connect(gainNode2);
+                gainNode2.connect(audioContext.destination);
+                
+                // Volume envelope for second note (louder and longer)
+                gainNode2.gain.setValueAtTime(0, now + 0.15);
+                gainNode2.gain.linearRampToValueAtTime(0.5, now + 0.16);
+                gainNode2.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+                
+                note2.start(now + 0.15);
+                note2.stop(now + 1.5);
+            }
+            
+            // Play sound after a short delay
+            setTimeout(() => {
+                try {
+                    playNetflixSound();
+                } catch (e) {
+                    console.log('Audio playback requires user interaction');
+                }
+            }, 500);
+        });
+
+        // Hover sound effect
+        function playHoverSound() {
+            if (!soundEnabled || !audioContext) return;
+            
+            const now = audioContext.currentTime;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            
+            osc.frequency.setValueAtTime(600, now);
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.1, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+            
+            osc.start(now);
+            osc.stop(now + 0.1);
+        }
+
+        // Click sound effect
+        function playClickSound() {
+            if (!soundEnabled || !audioContext) return;
+            
+            const now = audioContext.currentTime;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            
+            osc.frequency.setValueAtTime(800, now);
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.15, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+            
+            osc.start(now);
+            osc.stop(now + 0.15);
+        }
+
+        // Sound control button
+        document.addEventListener('DOMContentLoaded', () => {
+            const soundControl = document.getElementById('soundControl');
+            const soundIcon = document.getElementById('soundIcon');
+            
+            soundControl.addEventListener('click', () => {
+                soundEnabled = !soundEnabled;
+                soundIcon.textContent = soundEnabled ? '🔊' : '🔇';
+                playClickSound();
+            });
+
+            // Add hover sounds to interactive elements
+            const interactiveElements = document.querySelectorAll('.btn, .nav-links a, .project-card, .skill-tag, .contact-item');
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', playHoverSound);
+            });
+
+            // Add click sounds to buttons
+            const clickableElements = document.querySelectorAll('.btn, .contact-btn');
+            clickableElements.forEach(element => {
+                element.addEventListener('click', playClickSound);
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Project cards scroll on mobile
+        const projectsRow = document.querySelector('.projects-row');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        projectsRow.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - projectsRow.offsetLeft;
+            scrollLeft = projectsRow.scrollLeft;
+        });
+
+        projectsRow.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        projectsRow.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        projectsRow.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - projectsRow.offsetLeft;
+            const walk = (x - startX) * 2;
+            projectsRow.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
