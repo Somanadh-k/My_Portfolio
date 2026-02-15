@@ -739,6 +739,1149 @@
 .project-card-link:hover .project-link {
     opacity: 0.8;
 }
+ /* Shadow AI Assistant Styles - Netflix Theme */
+    .shadow-chat-button {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: rgba(20, 20, 20, 0.95);
+        border: 3px solid var(--netflix-red);
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(229, 9, 20, 0.6),
+                    0 0 40px rgba(229, 9, 20, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 999;
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+    }
+
+    .shadow-chat-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 30px rgba(229, 9, 20, 0.8),
+                    0 0 60px rgba(229, 9, 20, 0.5);
+        border-color: #fff;
+    }
+
+    /* Animated profile image in button */
+    .shadow-button-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        animation: shadowPulse 3s ease-in-out infinite;
+        position: relative;
+    }
+
+    .shadow-button-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #2f2f2f 0%, #1a1a1a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        color: var(--netflix-red);
+        font-weight: 700;
+        font-family: 'Bebas Neue', cursive;
+        animation: shadowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes shadowPulse {
+        0%, 100% {
+            filter: brightness(1) saturate(1);
+            transform: scale(1);
+        }
+        50% {
+            filter: brightness(1.2) saturate(1.3);
+            transform: scale(1.05);
+        }
+    }
+
+    .shadow-badge {
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        background: linear-gradient(135deg, var(--netflix-red), #c4070e);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid var(--netflix-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        animation: shadowBadgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes shadowBadgePulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    .shadow-chat-button.active .shadow-button-image,
+    .shadow-chat-button.active .shadow-button-placeholder {
+        display: none;
+    }
+
+    .shadow-chat-button::after {
+        content: '×';
+        font-size: 36px;
+        color: white;
+        display: none;
+        font-weight: 300;
+    }
+
+    .shadow-chat-button.active::after {
+        display: block;
+    }
+
+    /* Chat Container with flexible positioning */
+    .shadow-chat-container {
+        position: fixed;
+        width: 420px;
+        height: 650px;
+        background: var(--netflix-dark-grey);
+        border-radius: 16px;
+        border: 2px solid rgba(229, 9, 20, 0.4);
+        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.9),
+                    0 0 100px rgba(229, 9, 20, 0.2);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 998;
+        backdrop-filter: blur(20px);
+    }
+
+    .shadow-chat-container.active {
+        display: flex;
+    }
+
+    /* Positioning variations */
+    .shadow-chat-container.position-bottom-right {
+        bottom: 180px;
+        right: 30px;
+        animation: slideUpFromBottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .shadow-chat-container.position-side-left {
+        top: 50%;
+        right: 110px;
+        transform: translateY(-50%);
+        animation: slideFromRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .shadow-chat-container.position-side-right {
+        top: 50%;
+        left: 110px;
+        transform: translateY(-50%);
+        animation: slideFromLeft 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes slideUpFromBottom {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @keyframes slideFromRight {
+        from {
+            opacity: 0;
+            transform: translateY(-50%) translateX(30px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0) scale(1);
+        }
+    }
+
+    @keyframes slideFromLeft {
+        from {
+            opacity: 0;
+            transform: translateY(-50%) translateX(-30px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0) scale(1);
+        }
+    }
+
+    /* Chat Header */
+    .shadow-chat-header {
+        background: linear-gradient(135deg, rgba(229, 9, 20, 0.95) 0%, rgba(196, 7, 14, 0.95) 100%);
+        color: white;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .shadow-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .shadow-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: shadowAvatarGlow 3s ease-in-out infinite;
+    }
+
+    .shadow-avatar-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(47, 47, 47, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        font-weight: 700;
+        font-family: 'Bebas Neue', cursive;
+        animation: shadowAvatarGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes shadowAvatarGlow {
+        0%, 100% {
+            filter: brightness(1);
+        }
+        50% {
+            filter: brightness(1.3);
+        }
+    }
+
+    .shadow-status-dot {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        width: 12px;
+        height: 12px;
+        background: #34c759;
+        border-radius: 50%;
+        border: 2px solid white;
+        animation: shadowStatusPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes shadowStatusPulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 0 4px rgba(52, 199, 89, 0);
+        }
+    }
+
+    .shadow-chat-header-info h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-chat-header-info p {
+        font-size: 12px;
+        opacity: 0.9;
+        font-weight: 300;
+    }
+
+    .shadow-position-toggle {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        color: white;
+        font-size: 18px;
+    }
+
+    .shadow-position-toggle:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(90deg);
+    }
+
+    /* Chat Messages */
+    .shadow-chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        background: var(--netflix-black);
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar-thumb {
+        background: rgba(229, 9, 20, 0.5);
+        border-radius: 3px;
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar-thumb:hover {
+        background: var(--netflix-red);
+    }
+
+    .shadow-message {
+        margin-bottom: 16px;
+        display: flex;
+        gap: 10px;
+        animation: shadowFadeIn 0.4s ease;
+    }
+
+    @keyframes shadowFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .shadow-message.user {
+        flex-direction: row-reverse;
+    }
+
+    .shadow-message-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--netflix-red) 0%, #c4070e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        flex-shrink: 0;
+        border: 2px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .shadow-message.user .shadow-message-avatar {
+        background: linear-gradient(135deg, #2f2f2f, #1a1a1a);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .shadow-message-content {
+        max-width: 75%;
+        background: var(--netflix-dark-grey);
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(229, 9, 20, 0.3);
+        line-height: 1.6;
+        font-size: 14px;
+        color: var(--netflix-white);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-message.user .shadow-message-content {
+        background: linear-gradient(135deg, var(--netflix-red) 0%, #c4070e 100%);
+        color: white;
+        border-color: transparent;
+    }
+
+    /* Project cards in messages */
+    .shadow-project-card {
+        background: rgba(47, 47, 47, 0.5);
+        border: 1px solid rgba(229, 9, 20, 0.3);
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 8px;
+    }
+
+    .shadow-project-title {
+        color: var(--netflix-red);
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 13px;
+    }
+
+    .shadow-project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 6px;
+    }
+
+    .shadow-tech-tag {
+        background: rgba(229, 9, 20, 0.2);
+        color: var(--netflix-white);
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 10px;
+        border: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    /* Typing Indicator */
+    .shadow-typing-indicator {
+        display: none;
+        gap: 10px;
+        margin-bottom: 16px;
+        animation: shadowFadeIn 0.3s ease;
+    }
+
+    .shadow-typing-indicator.active {
+        display: flex;
+    }
+
+    .shadow-typing-dots {
+        background: var(--netflix-dark-grey);
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(229, 9, 20, 0.3);
+        display: flex;
+        gap: 5px;
+    }
+
+    .shadow-typing-dots span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--netflix-red);
+        animation: shadowTyping 1.4s infinite;
+    }
+
+    .shadow-typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .shadow-typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes shadowTyping {
+        0%, 60%, 100% {
+            transform: translateY(0);
+            opacity: 0.5;
+        }
+        30% {
+            transform: translateY(-12px);
+            opacity: 1;
+        }
+    }
+
+    /* Quick Actions */
+    .shadow-quick-actions {
+        padding: 0 20px 12px;
+        background: var(--netflix-black);
+    }
+
+    .shadow-quick-title {
+        font-size: 11px;
+        color: var(--netflix-light-grey);
+        margin-bottom: 8px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .shadow-action-buttons {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .shadow-action-button {
+        background: rgba(229, 9, 20, 0.1);
+        border: 1px solid rgba(229, 9, 20, 0.4);
+        border-radius: 16px;
+        padding: 6px 12px;
+        font-size: 11px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--netflix-white);
+        font-weight: 500;
+    }
+
+    .shadow-action-button:hover {
+        background: var(--netflix-red);
+        color: white;
+        border-color: var(--netflix-red);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+    }
+
+    /* Chat Input */
+    .shadow-chat-input-container {
+        padding: 16px 20px;
+        background: var(--netflix-dark-grey);
+        border-top: 1px solid rgba(229, 9, 20, 0.2);
+    }
+
+    .shadow-chat-input-wrapper {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .shadow-chat-input {
+        flex: 1;
+        border: 2px solid rgba(229, 9, 20, 0.4);
+        background: var(--netflix-black);
+        border-radius: 24px;
+        padding: 12px 18px;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.2s ease;
+        color: var(--netflix-white);
+        font-family: inherit;
+    }
+
+    .shadow-chat-input::placeholder {
+        color: var(--netflix-light-grey);
+    }
+
+    .shadow-chat-input:focus {
+        border-color: var(--netflix-red);
+        box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.1);
+    }
+
+    .shadow-send-button {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--netflix-red) 0%, #c4070e 100%);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+    }
+
+    .shadow-send-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+    }
+
+    .shadow-send-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: scale(1);
+    }
+
+    .shadow-send-button svg {
+        width: 20px;
+        height: 20px;
+        fill: white;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .shadow-chat-container {
+            width: calc(100vw - 20px);
+            height: calc(100vh - 150px);
+        }
+
+        .shadow-chat-container.position-bottom-right,
+        .shadow-chat-container.position-side-left,
+        .shadow-chat-container.position-side-right {
+            top: auto;
+            left: 10px;
+            right: 10px;
+            bottom: 120px;
+            transform: none;
+        }
+
+        .shadow-chat-button {
+            bottom: 90px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+        }
+    }
+     /* Backdrop overlay when chat is open */
+    .shadow-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(8px);
+        z-index: 997;
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .shadow-backdrop.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Chat Button - Smaller and less intrusive */
+    .shadow-chat-button {
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: rgba(20, 20, 20, 0.95);
+        border: 2px solid var(--netflix-red);
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(229, 9, 20, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 999;
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+    }
+
+    .shadow-chat-button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 24px rgba(229, 9, 20, 0.7);
+        border-color: #fff;
+    }
+
+    .shadow-button-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #2f2f2f 0%, #1a1a1a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--netflix-red);
+        font-weight: 700;
+        font-family: 'Bebas Neue', cursive;
+        animation: shadowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes shadowPulse {
+        0%, 100% {
+            filter: brightness(1);
+            transform: scale(1);
+        }
+        50% {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+    }
+
+    .shadow-badge {
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        background: linear-gradient(135deg, var(--netflix-red), #c4070e);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid var(--netflix-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        animation: shadowBadgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes shadowBadgePulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .shadow-chat-button.active .shadow-button-placeholder {
+        display: none;
+    }
+
+    .shadow-chat-button::after {
+        content: '×';
+        font-size: 32px;
+        color: white;
+        display: none;
+        font-weight: 300;
+    }
+
+    .shadow-chat-button.active::after {
+        display: block;
+    }
+
+    /* Chat Container - Optimized positioning */
+    .shadow-chat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 380px;
+        max-width: calc(100vw - 40px);
+        height: 580px;
+        max-height: calc(100vh - 140px);
+        background: var(--netflix-dark-grey);
+        border-radius: 16px;
+        border: 2px solid rgba(229, 9, 20, 0.4);
+        box-shadow: 0 16px 60px rgba(0, 0, 0, 0.95),
+                    0 0 100px rgba(229, 9, 20, 0.3);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 998;
+        backdrop-filter: blur(20px);
+        animation: slideUpSmooth 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .shadow-chat-container.active {
+        display: flex;
+    }
+
+    @keyframes slideUpSmooth {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Chat Header - Compact */
+    .shadow-chat-header {
+        background: linear-gradient(135deg, rgba(229, 9, 20, 0.95) 0%, rgba(196, 7, 14, 0.95) 100%);
+        color: white;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .shadow-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .shadow-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-avatar-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(47, 47, 47, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: white;
+        font-weight: 700;
+        font-family: 'Bebas Neue', cursive;
+        animation: shadowAvatarGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes shadowAvatarGlow {
+        0%, 100% { filter: brightness(1); }
+        50% { filter: brightness(1.3); }
+    }
+
+    .shadow-status-dot {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        background: #34c759;
+        border-radius: 50%;
+        border: 2px solid white;
+        animation: shadowStatusPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes shadowStatusPulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 0 3px rgba(52, 199, 89, 0);
+        }
+    }
+
+    .shadow-chat-header-info h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 2px;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 1.5px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-chat-header-info p {
+        font-size: 11px;
+        opacity: 0.85;
+        font-weight: 300;
+    }
+
+    .shadow-minimize-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        color: white;
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    .shadow-minimize-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Chat Messages - Optimized scrolling */
+    .shadow-chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 16px;
+        background: var(--netflix-black);
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar-thumb {
+        background: rgba(229, 9, 20, 0.4);
+        border-radius: 3px;
+    }
+
+    .shadow-chat-messages::-webkit-scrollbar-thumb:hover {
+        background: rgba(229, 9, 20, 0.6);
+    }
+
+    .shadow-message {
+        margin-bottom: 14px;
+        display: flex;
+        gap: 8px;
+        animation: shadowFadeIn 0.3s ease;
+    }
+
+    @keyframes shadowFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .shadow-message.user {
+        flex-direction: row-reverse;
+    }
+
+    .shadow-message-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--netflix-red) 0%, #c4070e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+        flex-shrink: 0;
+        border: 2px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .shadow-message.user .shadow-message-avatar {
+        background: linear-gradient(135deg, #2f2f2f, #1a1a1a);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .shadow-message-content {
+        max-width: 75%;
+        background: var(--netflix-dark-grey);
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(229, 9, 20, 0.25);
+        line-height: 1.5;
+        font-size: 13px;
+        color: var(--netflix-white);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-message.user .shadow-message-content {
+        background: linear-gradient(135deg, var(--netflix-red) 0%, #c4070e 100%);
+        color: white;
+        border-color: transparent;
+    }
+
+    /* Project cards - Compact */
+    .shadow-project-card {
+        background: rgba(47, 47, 47, 0.5);
+        border: 1px solid rgba(229, 9, 20, 0.25);
+        border-radius: 8px;
+        padding: 10px;
+        margin-top: 8px;
+    }
+
+    .shadow-project-title {
+        color: var(--netflix-red);
+        font-weight: 600;
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
+
+    .shadow-project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 6px;
+    }
+
+    .shadow-tech-tag {
+        background: rgba(229, 9, 20, 0.15);
+        color: var(--netflix-white);
+        padding: 2px 7px;
+        border-radius: 8px;
+        font-size: 9px;
+        border: 1px solid rgba(229, 9, 20, 0.25);
+    }
+
+    /* Typing Indicator */
+    .shadow-typing-indicator {
+        display: none;
+        gap: 8px;
+        margin-bottom: 14px;
+        animation: shadowFadeIn 0.3s ease;
+    }
+
+    .shadow-typing-indicator.active {
+        display: flex;
+    }
+
+    .shadow-typing-dots {
+        background: var(--netflix-dark-grey);
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(229, 9, 20, 0.25);
+        display: flex;
+        gap: 4px;
+    }
+
+    .shadow-typing-dots span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--netflix-red);
+        animation: shadowTyping 1.4s infinite;
+    }
+
+    .shadow-typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .shadow-typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes shadowTyping {
+        0%, 60%, 100% {
+            transform: translateY(0);
+            opacity: 0.5;
+        }
+        30% {
+            transform: translateY(-10px);
+            opacity: 1;
+        }
+    }
+
+    /* Quick Actions - More compact */
+    .shadow-quick-actions {
+        padding: 0 16px 10px;
+        background: var(--netflix-black);
+    }
+
+    .shadow-quick-title {
+        font-size: 10px;
+        color: var(--netflix-light-grey);
+        margin-bottom: 6px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .shadow-action-buttons {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .shadow-action-button {
+        background: rgba(229, 9, 20, 0.1);
+        border: 1px solid rgba(229, 9, 20, 0.35);
+        border-radius: 14px;
+        padding: 5px 10px;
+        font-size: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--netflix-white);
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .shadow-action-button:hover {
+        background: var(--netflix-red);
+        color: white;
+        border-color: var(--netflix-red);
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(229, 9, 20, 0.4);
+    }
+
+    /* Chat Input - Compact */
+    .shadow-chat-input-container {
+        padding: 12px 16px;
+        background: var(--netflix-dark-grey);
+        border-top: 1px solid rgba(229, 9, 20, 0.2);
+    }
+
+    .shadow-chat-input-wrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .shadow-chat-input {
+        flex: 1;
+        border: 2px solid rgba(229, 9, 20, 0.35);
+        background: var(--netflix-black);
+        border-radius: 20px;
+        padding: 10px 16px;
+        font-size: 13px;
+        outline: none;
+        transition: all 0.2s ease;
+        color: var(--netflix-white);
+        font-family: inherit;
+    }
+
+    .shadow-chat-input::placeholder {
+        color: var(--netflix-light-grey);
+        font-size: 12px;
+    }
+
+    .shadow-chat-input:focus {
+        border-color: var(--netflix-red);
+        box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
+    }
+
+    .shadow-send-button {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--netflix-red) 0%, #c4070e 100%);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        box-shadow: 0 3px 10px rgba(229, 9, 20, 0.4);
+        flex-shrink: 0;
+    }
+
+    .shadow-send-button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 5px 16px rgba(229, 9, 20, 0.6);
+    }
+
+    .shadow-send-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: scale(1);
+    }
+
+    .shadow-send-button svg {
+        width: 18px;
+        height: 18px;
+        fill: white;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .shadow-chat-container {
+            bottom: 10px;
+            right: 10px;
+            left: 10px;
+            width: auto;
+            max-width: none;
+            height: calc(100vh - 120px);
+        }
+
+        .shadow-chat-button {
+            bottom: 80px;
+            right: 15px;
+            width: 52px;
+            height: 52px;
+        }
+    }
+
+    /* Tablet adjustments */
+    @media (max-width: 1024px) and (min-width: 769px) {
+        .shadow-chat-container {
+            width: 360px;
+            height: 520px;
+        }
+    }
 
     </style>
 </head>
@@ -834,6 +1977,7 @@
         </div>
     </section>
 
+    
     <!-- Projects Section -->
     <section class="section" id="projects">
         <h2 class="section-title fade-in">Featured Projects</h2>
@@ -978,6 +2122,89 @@
             </div>
         </div>
     </section>
+
+
+<!-- Backdrop -->
+<div class="shadow-backdrop" id="shadowBackdrop"></div>
+
+<!-- Chat Button -->
+<button class="shadow-chat-button" id="shadowChatButton">
+     <img src="image.png" class="shadow-button-image" alt="Shadow AI">
+    <div class="shadow-button-placeholder"></div>
+    <span class="shadow-badge"></span>
+</button>
+
+<!-- Chat Container -->
+<div class="shadow-chat-container" id="shadowChatContainer">
+    <!-- Header -->
+    <div class="shadow-chat-header">
+        <div class="shadow-header-left">
+            <div class="shadow-avatar">
+                <div class="shadow-avatar-placeholder"> <img src="image.png" class="shadow-button-image" alt="Shadow AI"></div>
+                <span class="shadow-status-dot"> <img src="image.png" class="shadow-button-image" alt="Shadow AI"></span>
+            </div>
+            <div class="shadow-chat-header-info">
+                <h3>SHADOW</h3>
+                <p>AI Portfolio Assistant</p>
+            </div>
+        </div>
+        <button class="shadow-minimize-btn" id="shadowMinimize" title="Close">
+            ×
+        </button>
+    </div>
+
+    <!-- Messages -->
+    <div class="shadow-chat-messages" id="shadowChatMessages">
+        <div class="shadow-message">
+            <div class="shadow-message-avatar"></div>
+            <div class="shadow-message-content">
+                Welcome! I'm <strong>Shadow</strong>, Somanadh's AI assistant. I can help you explore his projects based on your interests. What domain are you looking for?
+            </div>
+        </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div class="shadow-typing-indicator" id="shadowTypingIndicator">
+        <div class="shadow-message-avatar">
+             <img src="image.png" class="shadow-button-image" alt="Shadow AI">
+        </div>
+        <div class="shadow-typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="shadow-quick-actions" id="shadowQuickActions">
+        <div class="shadow-quick-title">Quick Explore</div>
+        <div class="shadow-action-buttons">
+            <button class="shadow-action-button" data-domain="machine learning">🧠 ML</button>
+            <button class="shadow-action-button" data-domain="web development">🌐 Web</button>
+            <button class="shadow-action-button" data-domain="automation">⚙️ Auto</button>
+            <button class="shadow-action-button" data-domain="all projects">📁 All</button>
+            <button class="shadow-action-button" data-domain="contact">📧 Contact</button>
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="shadow-chat-input-container">
+        <div class="shadow-chat-input-wrapper">
+            <input 
+                type="text" 
+                class="shadow-chat-input" 
+                id="shadowChatInput" 
+                placeholder="Ask about projects, skills..."
+                autocomplete="off"
+            >
+            <button class="shadow-send-button" id="shadowSendButton">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
 
     <!-- Experience Section -->
     <section class="section" id="experience">
@@ -1196,7 +2423,240 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+const shadowPortfolioData = {
+        owner: "Somanadh Kollavajjala",
+        projects: [
+            {
+                name: "Heart Disease Prediction",
+                description: "ML model predicting heart disease risk using patient data",
+                tech: ["Python", "Scikit-learn", "Streamlit"],
+                domains: ["machine learning", "healthcare", "AI"],
+                skills: ["ML", "Python"]
+            },
+            {
+                name: "Student Review Hub",
+                description: "Responsive web platform for academic resource reviews",
+                tech: ["HTML5", "CSS3", "Responsive Design"],
+                domains: ["web development", "frontend"],
+                skills: ["HTML", "CSS"]
+            },
+            {
+                name: "YouTube Clone UI",
+                description: "Pixel-perfect YouTube interface recreation",
+                tech: ["HTML5", "CSS3", "Flexbox"],
+                domains: ["web development", "UI"],
+                skills: ["HTML", "CSS"]
+            },
+            {
+                name: "Finance Automation",
+                description: "Automated workflows with APIs and webhooks",
+                tech: ["n8n", "API", "Webhooks"],
+                domains: ["automation", "backend"],
+                skills: ["Automation", "API"]
+            },
+            {
+                name: "AI Exploration",
+                description: "AI applications using OpenAI",
+                tech: ["OpenAI API", "Python"],
+                domains: ["AI", "machine learning"],
+                skills: ["AI", "Python"]
+            }
+        ],
+        contact: {
+            email: "skollavajjala@gmail.com",
+            phone: "+91 9494235383",
+            github: "https://github.com/Somanadh-k/",
+            linkedin: "https://www.linkedin.com/in/somanadh-k-5ba42a25a/"
+        }
+    };
 
+    // DOM Elements
+    const shadowChatButton = document.getElementById('shadowChatButton');
+    const shadowBackdrop = document.getElementById('shadowBackdrop');
+    const shadowChatContainer = document.getElementById('shadowChatContainer');
+    const shadowChatMessages = document.getElementById('shadowChatMessages');
+    const shadowChatInput = document.getElementById('shadowChatInput');
+    const shadowSendButton = document.getElementById('shadowSendButton');
+    const shadowTypingIndicator = document.getElementById('shadowTypingIndicator');
+    const shadowQuickActions = document.getElementById('shadowQuickActions');
+    const shadowMinimize = document.getElementById('shadowMinimize');
+
+    // Toggle Chat
+    function toggleShadowChat() {
+        const isActive = shadowChatContainer.classList.contains('active');
+        shadowChatButton.classList.toggle('active');
+        shadowChatContainer.classList.toggle('active');
+        shadowBackdrop.classList.toggle('active');
+        
+        if (!isActive) {
+            shadowChatInput.focus();
+        }
+        
+        if (typeof playClickSound === 'function') playClickSound();
+    }
+
+    shadowChatButton.addEventListener('click', toggleShadowChat);
+    shadowMinimize.addEventListener('click', toggleShadowChat);
+    shadowBackdrop.addEventListener('click', toggleShadowChat);
+
+    // Messages
+    function addShadowUserMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'shadow-message user';
+        messageDiv.innerHTML = `
+            <div class="shadow-message-avatar">👤</div>
+            <div class="shadow-message-content">${escapeHtml(message)}</div>
+        `;
+        shadowChatMessages.appendChild(messageDiv);
+        shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
+    }
+
+    function addShadowAIMessage(message, projects = null) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'shadow-message';
+        
+        let projectCards = '';
+        if (projects && projects.length > 0) {
+            projects.forEach(project => {
+                const techTags = project.tech.slice(0, 3).map(t => 
+                    `<span class="shadow-tech-tag">${t}</span>`
+                ).join('');
+                
+                projectCards += `
+                    <div class="shadow-project-card">
+                        <div class="shadow-project-title">${project.name}</div>
+                        <div style="font-size: 11px; margin: 3px 0;">${project.description}</div>
+                        <div class="shadow-project-tech">${techTags}</div>
+                    </div>
+                `;
+            });
+        }
+        
+        messageDiv.innerHTML = `
+            <div class="shadow-message-avatar">🤖</div>
+            <div class="shadow-message-content">
+                ${escapeHtml(message)}
+                ${projectCards}
+            </div>
+        `;
+        shadowChatMessages.appendChild(messageDiv);
+        shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function showShadowTyping() {
+        shadowTypingIndicator.classList.add('active');
+        shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
+    }
+
+    function hideShadowTyping() {
+        shadowTypingIndicator.classList.remove('active');
+    }
+
+    // Smart matching
+    function findRelevantProjects(query) {
+        const lowerQuery = query.toLowerCase();
+        return shadowPortfolioData.projects.filter(project => {
+            return project.domains.some(d => lowerQuery.includes(d)) ||
+                   project.skills.some(s => lowerQuery.includes(s.toLowerCase())) ||
+                   project.tech.some(t => lowerQuery.includes(t.toLowerCase()));
+        });
+    }
+
+    // Get Response
+    async function getShadowResponse(userMessage) {
+        const lowerMessage = userMessage.toLowerCase();
+        const relevantProjects = findRelevantProjects(userMessage);
+        
+        if (lowerMessage.includes('contact') || lowerMessage.includes('email')) {
+            return {
+                text: `📧 ${shadowPortfolioData.contact.email}\n💼 LinkedIn\n🐙 GitHub`,
+                projects: null
+            };
+        }
+
+        if (lowerMessage.includes('all project')) {
+            return {
+                text: "Here's Somanadh's complete portfolio:",
+                projects: shadowPortfolioData.projects
+            };
+        }
+
+        if (relevantProjects.length > 0) {
+            return {
+                text: `Based on your interest:`,
+                projects: relevantProjects
+            };
+        }
+
+        try {
+            const response = await fetch("https://api.anthropic.com/v1/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    model: "claude-sonnet-4-20250514",
+                    max_tokens: 600,
+                    messages: [{
+                        role: "user",
+                        content: `You are Shadow, Somanadh's AI assistant. Portfolio: ${JSON.stringify(shadowPortfolioData, null, 2)}\n\nUser: ${userMessage}\n\nRespond in under 60 words.`
+                    }]
+                })
+            });
+
+            const data = await response.json();
+            return { 
+                text: data.content?.[0]?.text || "Ask about specific domains!",
+                projects: relevantProjects.length > 0 ? relevantProjects : null
+            };
+        } catch {
+            return {
+                text: "I'm Shadow! Try: 'ML projects', 'web development', 'automation', or 'contact'",
+                projects: null
+            };
+        }
+    }
+
+    // Send Message
+    async function sendShadowMessage(message = null) {
+        const userMessage = message || shadowChatInput.value.trim();
+        if (!userMessage) return;
+
+        shadowQuickActions.style.display = 'none';
+        addShadowUserMessage(userMessage);
+        if (!message) shadowChatInput.value = '';
+        shadowSendButton.disabled = true;
+
+        if (typeof playClickSound === 'function') playClickSound();
+        showShadowTyping();
+
+        const response = await getShadowResponse(userMessage);
+        
+        hideShadowTyping();
+        addShadowAIMessage(response.text, response.projects);
+        shadowSendButton.disabled = false;
+        shadowChatInput.focus();
+    }
+
+    // Events
+    shadowSendButton.addEventListener('click', () => sendShadowMessage());
+    shadowChatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendShadowMessage();
+    });
+
+    document.querySelectorAll('.shadow-action-button').forEach(button => {
+        button.addEventListener('click', () => {
+            sendShadowMessage(button.dataset.domain);
+        });
+    });
+
+    if (typeof playHoverSound === 'function') {
+        shadowChatButton.addEventListener('mouseenter', playHoverSound);
+    }
 </script>
 
 </body>
