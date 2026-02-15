@@ -1883,6 +1883,86 @@
         }
     }
 
+    /* Shadow Notification Bubble */
+.shadow-notification {
+    position: fixed;
+    bottom: 170px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--netflix-red), #c4070e);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 24px;
+    box-shadow: 0 6px 24px rgba(229, 9, 20, 0.6);
+    z-index: 998;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s ease;
+    max-width: 280px;
+    animation: shadowNotificationBounce 0.5s ease 2s forwards;
+}
+
+.shadow-notification.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.shadow-notification:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(229, 9, 20, 0.8);
+}
+
+.shadow-notification-content {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.shadow-notification-close {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--netflix-black);
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.shadow-notification-close:hover {
+    background: white;
+    color: var(--netflix-black);
+    transform: rotate(90deg);
+}
+
+@keyframes shadowNotificationBounce {
+    0%, 100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.05);
+    }
+}
+
+@media (max-width: 768px) {
+    .shadow-notification {
+        bottom: 150px;
+        right: 15px;
+        left: 15px;
+        max-width: none;
+    }
+}
     </style>
 </head>
 <body>
@@ -2123,15 +2203,12 @@
         </div>
     </section>
 
-
-<!-- Backdrop -->
 <div class="shadow-backdrop" id="shadowBackdrop"></div>
 
 <!-- Chat Button -->
 <button class="shadow-chat-button" id="shadowChatButton">
-     <img src="image.png" class="shadow-button-image" alt="Shadow AI">
-    <div class="shadow-button-placeholder"></div>
-    <span class="shadow-badge"></span>
+    <img src="image.png" class="shadow-button-image" alt="VIDYA AI">
+    <span class="shadow-badge">📚</span>
 </button>
 
 <!-- Chat Container -->
@@ -2140,12 +2217,12 @@
     <div class="shadow-chat-header">
         <div class="shadow-header-left">
             <div class="shadow-avatar">
-                <div class="shadow-avatar-placeholder"> <img src="image.png" class="shadow-button-image" alt="Shadow AI"></div>
-                <span class="shadow-status-dot"> <img src="image.png" class="shadow-button-image" alt="Shadow AI"></span>
+                <img src="image.png" alt="VIDYA" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                <span class="shadow-status-dot"></span>
             </div>
             <div class="shadow-chat-header-info">
-                <h3>SHADOW</h3>
-                <p>AI Portfolio Assistant</p>
+                <h3>VIDYA</h3>
+                <p>AI Assistant</p>
             </div>
         </div>
         <button class="shadow-minimize-btn" id="shadowMinimize" title="Close">
@@ -2156,18 +2233,16 @@
     <!-- Messages -->
     <div class="shadow-chat-messages" id="shadowChatMessages">
         <div class="shadow-message">
-            <div class="shadow-message-avatar"></div>
+            <div class="shadow-message-avatar">📚</div>
             <div class="shadow-message-content">
-                Welcome! I'm <strong>Shadow</strong>, Somanadh's AI assistant. I can help you explore his projects based on your interests. What domain are you looking for?
+                Welcome! I'm <strong>VIDYA</strong> Somanadh's AI assistant. I can help you explore his projects based on your interests. What domain are you looking for?
             </div>
         </div>
     </div>
 
     <!-- Typing Indicator -->
     <div class="shadow-typing-indicator" id="shadowTypingIndicator">
-        <div class="shadow-message-avatar">
-             <img src="image.png" class="shadow-button-image" alt="Shadow AI">
-        </div>
+        <div class="shadow-message-avatar">📚</div>
         <div class="shadow-typing-dots">
             <span></span>
             <span></span>
@@ -2424,239 +2499,319 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 const shadowPortfolioData = {
-        owner: "Somanadh Kollavajjala",
-        projects: [
-            {
-                name: "Heart Disease Prediction",
-                description: "ML model predicting heart disease risk using patient data",
-                tech: ["Python", "Scikit-learn", "Streamlit"],
-                domains: ["machine learning", "healthcare", "AI"],
-                skills: ["ML", "Python"]
-            },
-            {
-                name: "Student Review Hub",
-                description: "Responsive web platform for academic resource reviews",
-                tech: ["HTML5", "CSS3", "Responsive Design"],
-                domains: ["web development", "frontend"],
-                skills: ["HTML", "CSS"]
-            },
-            {
-                name: "YouTube Clone UI",
-                description: "Pixel-perfect YouTube interface recreation",
-                tech: ["HTML5", "CSS3", "Flexbox"],
-                domains: ["web development", "UI"],
-                skills: ["HTML", "CSS"]
-            },
-            {
-                name: "Finance Automation",
-                description: "Automated workflows with APIs and webhooks",
-                tech: ["n8n", "API", "Webhooks"],
-                domains: ["automation", "backend"],
-                skills: ["Automation", "API"]
-            },
-            {
-                name: "AI Exploration",
-                description: "AI applications using OpenAI",
-                tech: ["OpenAI API", "Python"],
-                domains: ["AI", "machine learning"],
-                skills: ["AI", "Python"]
-            }
-        ],
-        contact: {
-            email: "skollavajjala@gmail.com",
-            phone: "+91 9494235383",
-            github: "https://github.com/Somanadh-k/",
-            linkedin: "https://www.linkedin.com/in/somanadh-k-5ba42a25a/"
+    owner: "Somanadh Kollavajjala",
+    projects: [
+        {
+            name: "Heart Disease Prediction",
+            description: "ML model predicting heart disease risk using patient data",
+            tech: ["Python", "Scikit-learn", "Streamlit"],
+            domains: ["machine learning", "healthcare", "AI"],
+            skills: ["ML", "Python"]
+        },
+        {
+            name: "Student Review Hub",
+            description: "Responsive web platform for academic resource reviews",
+            tech: ["HTML5", "CSS3", "Responsive Design"],
+            domains: ["web development", "frontend"],
+            skills: ["HTML", "CSS"]
+        },
+        {
+            name: "YouTube Clone UI",
+            description: "Pixel-perfect YouTube interface recreation",
+            tech: ["HTML5", "CSS3", "Flexbox"],
+            domains: ["web development", "UI"],
+            skills: ["HTML", "CSS"]
+        },
+        {
+            name: "Finance Automation",
+            description: "Automated workflows with APIs and webhooks",
+            tech: ["n8n", "API", "Webhooks"],
+            domains: ["automation", "backend"],
+            skills: ["Automation", "API"]
+        },
+        {
+            name: "AI Exploration",
+            description: "AI applications using OpenAI",
+            tech: ["OpenAI API", "Python"],
+            domains: ["AI", "machine learning"],
+            skills: ["AI", "Python"]
         }
-    };
-
-    // DOM Elements
-    const shadowChatButton = document.getElementById('shadowChatButton');
-    const shadowBackdrop = document.getElementById('shadowBackdrop');
-    const shadowChatContainer = document.getElementById('shadowChatContainer');
-    const shadowChatMessages = document.getElementById('shadowChatMessages');
-    const shadowChatInput = document.getElementById('shadowChatInput');
-    const shadowSendButton = document.getElementById('shadowSendButton');
-    const shadowTypingIndicator = document.getElementById('shadowTypingIndicator');
-    const shadowQuickActions = document.getElementById('shadowQuickActions');
-    const shadowMinimize = document.getElementById('shadowMinimize');
-
-    // Toggle Chat
-    function toggleShadowChat() {
-        const isActive = shadowChatContainer.classList.contains('active');
-        shadowChatButton.classList.toggle('active');
-        shadowChatContainer.classList.toggle('active');
-        shadowBackdrop.classList.toggle('active');
-        
-        if (!isActive) {
-            shadowChatInput.focus();
-        }
-        
-        if (typeof playClickSound === 'function') playClickSound();
+    ],
+    contact: {
+        email: "skollavajjala@gmail.com",
+        phone: "+91 9494235383",
+        github: "https://github.com/Somanadh-k/",
+        linkedin: "https://www.linkedin.com/in/somanadh-k-5ba42a25a/"
     }
+};
 
-    shadowChatButton.addEventListener('click', toggleShadowChat);
-    shadowMinimize.addEventListener('click', toggleShadowChat);
-    shadowBackdrop.addEventListener('click', toggleShadowChat);
+// DOM Elements
+const shadowChatButton = document.getElementById('shadowChatButton');
+const shadowBackdrop = document.getElementById('shadowBackdrop');
+const shadowChatContainer = document.getElementById('shadowChatContainer');
+const shadowChatMessages = document.getElementById('shadowChatMessages');
+const shadowChatInput = document.getElementById('shadowChatInput');
+const shadowSendButton = document.getElementById('shadowSendButton');
+const shadowTypingIndicator = document.getElementById('shadowTypingIndicator');
+const shadowQuickActions = document.getElementById('shadowQuickActions');
+const shadowMinimize = document.getElementById('shadowMinimize');
 
-    // Messages
-    function addShadowUserMessage(message) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'shadow-message user';
-        messageDiv.innerHTML = `
-            <div class="shadow-message-avatar">👤</div>
-            <div class="shadow-message-content">${escapeHtml(message)}</div>
-        `;
-        shadowChatMessages.appendChild(messageDiv);
-        shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
-    }
-
-    function addShadowAIMessage(message, projects = null) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'shadow-message';
-        
-        let projectCards = '';
-        if (projects && projects.length > 0) {
-            projects.forEach(project => {
-                const techTags = project.tech.slice(0, 3).map(t => 
-                    `<span class="shadow-tech-tag">${t}</span>`
-                ).join('');
-                
-                projectCards += `
-                    <div class="shadow-project-card">
-                        <div class="shadow-project-title">${project.name}</div>
-                        <div style="font-size: 11px; margin: 3px 0;">${project.description}</div>
-                        <div class="shadow-project-tech">${techTags}</div>
-                    </div>
-                `;
-            });
-        }
-        
-        messageDiv.innerHTML = `
-            <div class="shadow-message-avatar">🤖</div>
-            <div class="shadow-message-content">
-                ${escapeHtml(message)}
-                ${projectCards}
-            </div>
-        `;
-        shadowChatMessages.appendChild(messageDiv);
-        shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
-    }
-
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    function showShadowTyping() {
-        shadowTypingIndicator.classList.add('active');
-        shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
-    }
-
-    function hideShadowTyping() {
-        shadowTypingIndicator.classList.remove('active');
-    }
-
-    // Smart matching
-    function findRelevantProjects(query) {
-        const lowerQuery = query.toLowerCase();
-        return shadowPortfolioData.projects.filter(project => {
-            return project.domains.some(d => lowerQuery.includes(d)) ||
-                   project.skills.some(s => lowerQuery.includes(s.toLowerCase())) ||
-                   project.tech.some(t => lowerQuery.includes(t.toLowerCase()));
-        });
-    }
-
-    // Get Response
-    async function getShadowResponse(userMessage) {
-        const lowerMessage = userMessage.toLowerCase();
-        const relevantProjects = findRelevantProjects(userMessage);
-        
-        if (lowerMessage.includes('contact') || lowerMessage.includes('email')) {
-            return {
-                text: `📧 ${shadowPortfolioData.contact.email}\n💼 LinkedIn\n🐙 GitHub`,
-                projects: null
-            };
-        }
-
-        if (lowerMessage.includes('all project')) {
-            return {
-                text: "Here's Somanadh's complete portfolio:",
-                projects: shadowPortfolioData.projects
-            };
-        }
-
-        if (relevantProjects.length > 0) {
-            return {
-                text: `Based on your interest:`,
-                projects: relevantProjects
-            };
-        }
-
-        try {
-            const response = await fetch("https://api.anthropic.com/v1/messages", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    model: "claude-sonnet-4-20250514",
-                    max_tokens: 600,
-                    messages: [{
-                        role: "user",
-                        content: `You are Shadow, Somanadh's AI assistant. Portfolio: ${JSON.stringify(shadowPortfolioData, null, 2)}\n\nUser: ${userMessage}\n\nRespond in under 60 words.`
-                    }]
-                })
-            });
-
-            const data = await response.json();
-            return { 
-                text: data.content?.[0]?.text || "Ask about specific domains!",
-                projects: relevantProjects.length > 0 ? relevantProjects : null
-            };
-        } catch {
-            return {
-                text: "I'm Shadow! Try: 'ML projects', 'web development', 'automation', or 'contact'",
-                projects: null
-            };
-        }
-    }
-
-    // Send Message
-    async function sendShadowMessage(message = null) {
-        const userMessage = message || shadowChatInput.value.trim();
-        if (!userMessage) return;
-
-        shadowQuickActions.style.display = 'none';
-        addShadowUserMessage(userMessage);
-        if (!message) shadowChatInput.value = '';
-        shadowSendButton.disabled = true;
-
-        if (typeof playClickSound === 'function') playClickSound();
-        showShadowTyping();
-
-        const response = await getShadowResponse(userMessage);
-        
-        hideShadowTyping();
-        addShadowAIMessage(response.text, response.projects);
-        shadowSendButton.disabled = false;
+// Toggle Chat
+function toggleShadowChat() {
+    const isActive = shadowChatContainer.classList.contains('active');
+    shadowChatButton.classList.toggle('active');
+    shadowChatContainer.classList.toggle('active');
+    shadowBackdrop.classList.toggle('active');
+    
+    if (!isActive) {
         shadowChatInput.focus();
     }
+    
+    if (typeof playClickSound === 'function') playClickSound();
+}
 
-    // Events
-    shadowSendButton.addEventListener('click', () => sendShadowMessage());
-    shadowChatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendShadowMessage();
-    });
+shadowChatButton.addEventListener('click', toggleShadowChat);
+shadowMinimize.addEventListener('click', toggleShadowChat);
+shadowBackdrop.addEventListener('click', toggleShadowChat);
 
-    document.querySelectorAll('.shadow-action-button').forEach(button => {
-        button.addEventListener('click', () => {
-            sendShadowMessage(button.dataset.domain);
+// Messages
+function addShadowUserMessage(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'shadow-message user';
+    messageDiv.innerHTML = `
+        <div class="shadow-message-avatar">👤</div>
+        <div class="shadow-message-content">${escapeHtml(message)}</div>
+    `;
+    shadowChatMessages.appendChild(messageDiv);
+    shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
+}
+
+function addShadowAIMessage(message, projects = null) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'shadow-message';
+    
+    let projectCards = '';
+    if (projects && projects.length > 0) {
+        projects.forEach(project => {
+            const techTags = project.tech.slice(0, 3).map(t => 
+                `<span class="shadow-tech-tag">${t}</span>`
+            ).join('');
+            
+            projectCards += `
+                <div class="shadow-project-card">
+                    <div class="shadow-project-title">${project.name}</div>
+                    <div style="font-size: 11px; margin: 3px 0;">${project.description}</div>
+                    <div class="shadow-project-tech">${techTags}</div>
+                </div>
+            `;
         });
-    });
-
-    if (typeof playHoverSound === 'function') {
-        shadowChatButton.addEventListener('mouseenter', playHoverSound);
     }
+    
+    messageDiv.innerHTML = `
+        <div class="shadow-message-avatar">📚</div>
+        <div class="shadow-message-content">
+            ${escapeHtml(message)}
+            ${projectCards}
+        </div>
+    `;
+    shadowChatMessages.appendChild(messageDiv);
+    shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function showShadowTyping() {
+    shadowTypingIndicator.classList.add('active');
+    shadowChatMessages.scrollTop = shadowChatMessages.scrollHeight;
+}
+
+function hideShadowTyping() {
+    shadowTypingIndicator.classList.remove('active');
+}
+
+// Smart matching
+function findRelevantProjects(query) {
+    const lowerQuery = query.toLowerCase();
+    return shadowPortfolioData.projects.filter(project => {
+        return project.domains.some(d => lowerQuery.includes(d)) ||
+               project.skills.some(s => lowerQuery.includes(s.toLowerCase())) ||
+               project.tech.some(t => lowerQuery.includes(t.toLowerCase()));
+    });
+}
+
+// Get Response (SINGLE VERSION - CORRECTED)
+async function getShadowResponse(userMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+    const relevantProjects = findRelevantProjects(userMessage);
+    
+    // Enhanced contact info response with proper formatting
+    if (lowerMessage.includes('contact') || lowerMessage.includes('email') || 
+        lowerMessage.includes('reach') || lowerMessage.includes('linkedin') ||
+        lowerMessage.includes('github') || lowerMessage.includes('phone')) {
+        
+        const contactMessage = `You can reach Somanadh through:
+
+📧 Email: ${shadowPortfolioData.contact.email}
+
+💼 LinkedIn: ${shadowPortfolioData.contact.linkedin}
+
+🐙 GitHub: ${shadowPortfolioData.contact.github}
+
+📱 Phone: ${shadowPortfolioData.contact.phone}
+
+Feel free to connect on any platform!`;
+        
+        return {
+            text: contactMessage,
+            projects: null
+        };
+    }
+
+    if (lowerMessage.includes('all project')) {
+        return {
+            text: "Here's Somanadh's complete portfolio:",
+            projects: shadowPortfolioData.projects
+        };
+    }
+
+    if (relevantProjects.length > 0) {
+        return {
+            text: `Based on your interest:`,
+            projects: relevantProjects
+        };
+    }
+
+    try {
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                model: "claude-sonnet-4-20250514",
+                max_tokens: 600,
+                messages: [{
+                    role: "user",
+                    content: `You are VIDYA (meaning "Knowledge" in Sanskrit), Somanadh's AI portfolio assistant. Portfolio: ${JSON.stringify(shadowPortfolioData, null, 2)}\n\nUser: ${userMessage}\n\nRespond in under 60 words. Be knowledgeable and helpful.`
+                }]
+            })
+        });
+
+        const data = await response.json();
+        return { 
+            text: data.content?.[0]?.text || "Ask about specific domains!",
+            projects: relevantProjects.length > 0 ? relevantProjects : null
+        };
+    } catch {
+        return {
+            text: "I'm VIDYA! Try: 'ML projects', 'web development', 'automation', or 'contact'",
+            projects: null
+        };
+    }
+}
+
+// Send Message
+async function sendShadowMessage(message = null) {
+    const userMessage = message || shadowChatInput.value.trim();
+    if (!userMessage) return;
+
+    shadowQuickActions.style.display = 'none';
+    addShadowUserMessage(userMessage);
+    if (!message) shadowChatInput.value = '';
+    shadowSendButton.disabled = true;
+
+    if (typeof playClickSound === 'function') playClickSound();
+    showShadowTyping();
+
+    const response = await getShadowResponse(userMessage);
+    
+    hideShadowTyping();
+    addShadowAIMessage(response.text, response.projects);
+    shadowSendButton.disabled = false;
+    shadowChatInput.focus();
+}
+
+// Events
+shadowSendButton.addEventListener('click', () => sendShadowMessage());
+shadowChatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendShadowMessage();
+});
+
+document.querySelectorAll('.shadow-action-button').forEach(button => {
+    button.addEventListener('click', () => {
+        sendShadowMessage(button.dataset.domain);
+    });
+});
+
+if (typeof playHoverSound === 'function') {
+    shadowChatButton.addEventListener('mouseenter', playHoverSound);
+}
+
+// Show greeting notification bubble when page loads
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        if (!shadowChatContainer.classList.contains('active')) {
+            showShadowNotification();
+        }
+    }, 2000);
+});
+
+// Function to show notification
+function showShadowNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'shadow-notification';
+    notification.innerHTML = `
+        <div class="shadow-notification-content">
+            <span>📚</span>
+            <span>Hi! I'm <strong>VIDYA</strong>, , here to assist you. I can help you explore Somanadh's projects based on your domain or skill interests. What are you looking for?
+        </div></span>
+        </div>
+        <div class="shadow-notification-close">×</div>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => notification.classList.add('active'), 100);
+    
+    if (typeof playHoverSound === 'function') {
+        setTimeout(() => playHoverSound(), 2100);
+    }
+    
+    const autoRemoveTimer = setTimeout(() => {
+        notification.classList.remove('active');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 6000);
+    
+    notification.addEventListener('click', (e) => {
+        if (e.target.classList.contains('shadow-notification-close')) {
+            return;
+        }
+        
+        clearTimeout(autoRemoveTimer);
+        notification.classList.remove('active');
+        setTimeout(() => notification.remove(), 300);
+        
+        setTimeout(() => {
+            if (!shadowChatContainer.classList.contains('active')) {
+                toggleShadowChat();
+            }
+        }, 400);
+    });
+    
+    const closeBtn = notification.querySelector('.shadow-notification-close');
+    closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clearTimeout(autoRemoveTimer);
+        notification.classList.remove('active');
+        setTimeout(() => notification.remove(), 300);
+        if (typeof playClickSound === 'function') playClickSound();
+    });
+}
 </script>
 
 </body>
